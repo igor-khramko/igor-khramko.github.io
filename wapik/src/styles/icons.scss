@@ -1,0 +1,5 @@
+@mixin icons($font-size){
+    font-family: "font-icons";
+    font-size: $font-size;
+    font-weight: normal;
+}

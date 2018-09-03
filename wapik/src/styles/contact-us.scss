@@ -1,0 +1,90 @@
+.masthead-map{
+    &__content{
+        width: 100%;
+        height: 65vh;
+    }
+}
+.feedback{
+    &__content{
+        padding: 85px 0 105px;
+    }
+    &__info{
+        @include flex(space-around);
+    }
+    &__form{
+        width: 47%;
+    }
+    &__form-item{
+        display: block;
+        box-sizing: border-box;
+        border: 1px solid $feedback-form-item-border;
+        background-color: $feedback-form-item-bg;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+        font-size: 14px;
+        font-family: "main-text-font";
+        color: $feedback-form-item-color;
+        line-height: 1;
+        padding: 16px 0 16px 20px;
+        width: 100%;
+        margin-bottom: 25px;
+        outline: none;
+    }
+    &__send-message-button{
+        &_green{
+            background-color: $lightgreen-color;
+        }
+        &_green:hover{
+            border: 2px solid $lightgreen-color;
+            color: $lightgreen-color;
+            background-color: transparent;
+        }
+    }
+    .headquarter{
+        width: 30%;
+        padding: 40px 40px 60px;
+        border: 2px dashed $headquarter-border;
+        background-color: $headquarter-bg;
+        margin-bottom: 135px;
+        font-family: "main-text-font";
+        font-size: 15px;
+        &__content{
+            width: 50%;
+        }
+        &__header{
+            font-size: 22px;
+            font-family: "header-font";
+            color: $dark-heading-color;
+            text-transform: uppercase;
+            line-height: 0.955;
+        }
+        &__address{
+            color: $headquarter-address-font;
+            line-height: 1.4;
+            margin: 30px 0;
+        }
+        &__address::before{
+            content: "\f456";
+            @include icons(15px);
+            margin-right: 15px;
+            color: $lightgreen-color;
+        }
+        &__phone-number{
+            color: $headquarter-phone-number-font;
+        }
+        &__phone-number::before{
+            content: "\f4b9";
+            @include icons(15px);
+            margin-right: 15px;
+            color: $lightgreen-color;
+        }
+        &__email{
+            color: $dark-heading-color;
+        }
+        &__email::before{
+            content: "\f132";
+            @include icons(15px);
+            margin-right: 15px;
+            color: $lightgreen-color;
+        }
+    }
+}
