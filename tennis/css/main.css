@@ -1,0 +1,187 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("../image/bg2.jpg");
+    background-size: cover;
+}
+.container{
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+    position: relative;
+}
+.game-area{
+    background-image: url("../image/bg-field.png");
+    background-size: cover;
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.score{
+    border: 2px solid #190d85;
+    box-sizing: border-box;
+    width: 250px;
+    margin: 0 auto;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-start{
+    width: 15%;
+    display: block;
+    margin: 20px auto;
+    line-height: 25px;
+    border-radius: 25px;
+    outline: none;
+    background: linear-gradient(to bottom, #ffbf00 0%, #fa9f17 100%);
+    border: 0;
+    cursor: pointer;
+}
+
+.button-start:focus{
+    outline: none;
+    background: #5eff00a1;
+    border: 0;
+    cursor: pointer;
+    -webkit-transition: -webkit-transform .25s ease;
+    transition: -webkit-transform .25 ease;
+    transition: transform .25s ease;
+    transition: transform .25s ease, -webkit-transform .25s ease;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+}
+
+.button-start:hover{
+    cursor: pointer;
+    background: #00ff6a4d;
+}
+
+.welcome-form{
+    position: absolute;
+    width: 50%;
+    height: 45%;
+    min-width: 350px;
+    max-width: 600px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #190d85;
+    border-radius: 15px;
+    padding: 40px 55px;
+    line-height: 30px;
+    font-size: 18px;
+    background: #3020bc;
+    background: -webkit-linear-gradient(left, #3020bc 0%, #375ddb 29%, #4a37db 50%, #4a37db 71%, #3020bc 100%);
+    background: linear-gradient(to right, #3020bc 0%, #4a37db 29%, #4a37db 50%, #4a37db 71%, hsl(246, 71%, 43%) 100%);
+}
+
+.hidden{
+    display: none;
+}
+
+.welcome{
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.player-name-input-field{
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 30px;
+    outline: none;
+    line-height: 30px;
+    padding: 0 20px;
+    background: #3020bc;
+}
+
+.player-name-input-field:focus {
+    outline: none;
+    -webkit-transition: -webkit-transform 1.5s ease;
+    transition: -webkit-transform 1.5s ease;
+    transition: transform 1.5s ease;
+    transition: transform 1.5s ease, -webkit-transform 1.5s ease;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+
+  ::-webkit-input-placeholder {
+    color: #fff;
+  }
+  
+  ::-moz-placeholder {
+    color: #fff;
+  }
+  
+  :-ms-input-placeholder {
+    color: #fff;
+  }
+  
+  ::placeholder {
+    color: #fff;
+  }
+
+.player-choose-color{
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    height: 40px;
+}
+
+.welcome-submit{
+    width: 100%;
+    line-height: 25px;
+    border-radius: 25px;
+    outline: none;
+    background: linear-gradient(to bottom, #ffbf00 0%, #fa9f17 100%);
+    border: 0;
+    cursor: pointer;
+    -webkit-transition: -webkit-transform .15s ease;
+    transition: -webkit-transform .15s ease;
+    transition: transform .15s ease;
+    transition: transform .15s ease, -webkit-transform .15s ease;
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+}
+
+.welcome-submit:focus {
+    outline: none;
+    background: #7bff00ce;
+    -webkit-transition: -webkit-transform .25s ease;
+    transition: -webkit-transform .25 ease;
+    transition: transform .25s ease;
+    transition: transform .25s ease, -webkit-transform .25s ease;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+
+
+/* input[type="radio"]{display: none;}
+
+
+label{
+    width: 20px;
+    height: 20px;
+}
+.blue{background-color: blue;}
+.cyan{background-color: #00ffff;}
+
+
+input[type="radio"]:checked+label{
+    border: black solid 2px;
+} */
+
+@media (max-width: 1200){
+    .welcome-form{
+        width: 25%;
+    }
+}

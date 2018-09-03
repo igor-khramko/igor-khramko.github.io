@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link type="text/css" rel="stylesheet" href="css/animate.css">
+    <link type="text/css" rel="stylesheet" href="css/main.css">
+    <title>TENNIS</title>
+</head>
+<body>
+    <section class="main-content">
+        <div class="container">
+            <div class="header">
+                <div class="score">
+                        <div class="player1Name">Player1</div>
+                        <div class="player1Score"></div>:<div class="player2Score"></div>
+                        <div class="player2Name">Player2</div>
+                </div>
+                <button class="button-start">Старт!</button>
+            </div>
+            <div class="game-area"></div>
+            <form class="welcome-form form1 animated jackInTheBox">
+                <div class="welcome">Приветствуем Вас, Игрок №1!</div>
+                <div>Введите Ваш игровой ник</div>
+                <input type="text" class="player-name-input-field p1-name" placeholder="Player1" maxlength="8" name="p1name">
+                <label>Выберите цвет Вашей ракетки</label>
+                <input type="color" class="player-choose-color p1-choose-color">
+                <input type="button" class="welcome-submit p1-button" value="OK">
+            </form>
+            <form class="welcome-form form2 animated hidden">
+                    <div class="welcome">Приветствуем Вас, Игрок №2!</div>
+                    <div>Введите Ваш игровой ник</div>
+                    <input type="text" class="player-name-input-field p2-name" placeholder="Player2">
+                    <div>Выберите цвет Вашей ракетки</div>
+                    <input type="color" class="player-choose-color p2-choose-color">
+                    <input type="button" class="welcome-submit p2-button" value="OK">
+            </form>
+        </div>
+        
+        <!-- <form>
+                <input type="radio" name="color" value="#0000ff" id="blue"/>
+                <label for="blue" class="blue"></label>
+                <input type="radio" name="color" value="#00ffff" id="cyan"/>
+                <label for="cyan" class="cyan"></label>
+        </form> -->
+    </section>
+    <script src="js/script.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+</body>
+</html>
