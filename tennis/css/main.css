@@ -9,6 +9,8 @@ body{
     height: 100vh;
     margin: 0 auto;
     position: relative;
+    box-sizing: border-box;
+
 }
 .game-area{
     background-image: url("../image/bg-field.png");
@@ -18,7 +20,7 @@ body{
     margin: 0 auto;
 }
 
-.score{
+.scoreView{
     border: 2px solid #190d85;
     box-sizing: border-box;
     width: 250px;
@@ -28,34 +30,30 @@ body{
     justify-content: space-around;
 }
 
-.button-start{
-    width: 15%;
-    display: block;
-    margin: 20px auto;
-    line-height: 25px;
-    border-radius: 25px;
+.button-start, .button-history, .button-hide-history{
+    display: inline-block;
+    margin: 20px;
+    padding: 5px 0;
+    width: 115px;
     outline: none;
+    border: 2px solid #a87f04ab;
+    border-radius: 5px;
     background: linear-gradient(to bottom, #ffbf00 0%, #fa9f17 100%);
-    border: 0;
     cursor: pointer;
 }
 
 .button-start:focus{
     outline: none;
-    background: #5eff00a1;
-    border: 0;
+    background: #00ff6a4d;
     cursor: pointer;
     -webkit-transition: -webkit-transform .25s ease;
     transition: -webkit-transform .25 ease;
-    transition: transform .25s ease;
-    transition: transform .25s ease, -webkit-transform .25s ease;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
+    transition: "all" .25s ease;
 }
 
-.button-start:hover{
+.button-start:hover, .button-history:hover, .button-hide-history:hover{
     cursor: pointer;
-    background: #00ff6a4d;
+    background: #5eff00a1;
 }
 
 .welcome-form{
@@ -64,7 +62,7 @@ body{
     height: 45%;
     min-width: 350px;
     max-width: 600px;
-    top: 0;
+    top: -150px;
     right: 0;
     bottom: 0;
     left: 0;
@@ -142,15 +140,15 @@ body{
     line-height: 25px;
     border-radius: 25px;
     outline: none;
+    border: 2px solid #a87f04ab;
     background: linear-gradient(to bottom, #ffbf00 0%, #fa9f17 100%);
-    border: 0;
     cursor: pointer;
-    -webkit-transition: -webkit-transform .15s ease;
-    transition: -webkit-transform .15s ease;
-    transition: transform .15s ease;
-    transition: transform .15s ease, -webkit-transform .15s ease;
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02);
+    -webkit-transition: -webkit-transform .25s ease;
+    transition: -webkit-transform .25s ease;
+    transition: transform .25s ease;
+    transition: transform .25s ease, -webkit-transform .25s ease;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
 
 .welcome-submit:focus {
@@ -160,25 +158,23 @@ body{
     transition: -webkit-transform .25 ease;
     transition: transform .25s ease;
     transition: transform .25s ease, -webkit-transform .25s ease;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-  }
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+}
 
+.history-table{}
 
-/* input[type="radio"]{display: none;}
+.history-data-row{
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-around;
+}
 
-
-label{
-    width: 20px;
+.history-data-cell{
+    width: 15%;
     height: 20px;
 }
-.blue{background-color: blue;}
-.cyan{background-color: #00ffff;}
 
-
-input[type="radio"]:checked+label{
-    border: black solid 2px;
-} */
 
 @media (max-width: 1200){
     .welcome-form{

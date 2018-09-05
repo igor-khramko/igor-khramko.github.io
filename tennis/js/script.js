@@ -3,6 +3,8 @@ var body = document.querySelector("body");
 var container = document.querySelector(".container");
 var gameArea = document.querySelector(".game-area");
 var buttonStart = document.querySelector(".button-start");
+var buttonHistory = document.querySelector(".button-history");
+var buttonHideHistory = document.querySelector(".button-hide-history");
 var score1 = document.querySelector(".player1Score");
 var score2 = document.querySelector(".player2Score");
 var player1Name = document.querySelector(".player1Name");
@@ -25,7 +27,11 @@ var ballAudio=new Audio("audio/Ball.mp3");
 var applauseAudio=new Audio("audio/Applause.mp3");
 var noiseAudio=new Audio("audio/Noise.mp3");
 
-
+var ajaxHandlerScript = "https://fe.it-academy.by/AjaxStringStorage2.php";
+var historyArr;
+var stringName = "KHRAMKO_TENNIS_HISTORY";
+var updatePassword;
+var historyView;
 
 if ('ontouchmove' in window) {
     // window.addEventListener("touchstart", touchMove);
@@ -37,6 +43,8 @@ if ('ontouchmove' in window) {
     window.addEventListener("keyup", keyMoveUp);
 }
 buttonStart.addEventListener("click", start);
+buttonHistory.addEventListener("click", readHistory);
+buttonHideHistory.addEventListener("click", hideHistory);
 form1button.addEventListener("click", submitP1data);
 form2button.addEventListener("click", submitP2data);
 
@@ -242,6 +250,7 @@ function submitP2data(){
             form2.children[i].setAttribute("disabled", "disabled");
             form2.children[i].style.cursor = "default";
         }
+        buttonStart.removeAttribute("disabled");
         buttonStart.focus();
     }
 }
@@ -284,6 +293,7 @@ function start(){
         }
         tick();
     }
+    buttonStart.setAttribute("disabled", "disabled");
 }
 
 function tick() {
@@ -341,6 +351,8 @@ function tick() {
             playNoiseAudio();
             playApplauseAudio();
             window.navigator.vibrate([1000, 1000, 1000]);
+            buttonStart.removeAttribute("disabled");
+            buttonStart.focus();
         }
         // вылетел ли мяч правее стены?
         if (gameAssets.ball.posX+gameAssets.ball.radius>gameAssets.playingFieldRect.width && gameStatus == "inGame"){
@@ -355,6 +367,8 @@ function tick() {
                 playNoiseAudio();
                 playApplauseAudio();
                 window.navigator.vibrate([1000, 1000, 1000]);
+                buttonStart.removeAttribute("disabled");
+                buttonStart.focus();
         }
         // вылетел ли мяч выше стены?
         if (gameAssets.ball.posY - gameAssets.ball.radius<0){
@@ -401,43 +415,102 @@ function playNoiseAudio() {
     noiseAudio.play();
 }
 
-
 function checkScore(){
     if(gameAssets.player1.score==5){
         setDefaultPosition();
         console.log(`${gameAssets.player1.name}  победил(а)!`);
-        saveMatchHistory();
+        saveHistory();
     } else if(gameAssets.player2.score==5){
         setDefaultPosition();
         console.log(`${gameAssets.player2.name}  победил(а)!`);
-        saveMatchHistory();
+        saveHistory();
     }
+}
+function saveHistory() {
+    updatePassword=Math.random();
+    $.ajax( {
+            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
+            data : { f : 'LOCKGET', n : stringName, p : updatePassword },
+            success : restoreHistory, error : errorHandler
+        }
+    );
+}
+    
+function restoreHistory(callresult){
+    if (callresult.error!=undefined )
+        alert(callresult.error); 
+    else {
+        historyArr = JSON.parse(callresult.result);
+        var gameHistory = {};  //хэш для хранения сохраняемой строки
+        gameHistory.player1 = {"color": gameAssets.player1.color, "name" : gameAssets.player1.name, "score" : gameAssets.player1.score};
+        gameHistory.player2 = {"score" : gameAssets.player2.score, "name" : gameAssets.player2.name, "color": gameAssets.player2.color};
+        historyArr.push(gameHistory); //добавляем текущую сохраняемую строку к считанному с сервера массиву строк
+        var historyJSON = JSON.stringify(historyArr); //переводим массив информации об истории игр в JSON   
+        //отправляем JSON с историей игр на сервер        
+        $.ajax( {
+            url : ajaxHandlerScript,
+            type : 'POST', dataType:'json', cache : false,
+            data : { f : 'UPDATE', n : stringName, v : historyJSON, p : updatePassword }, 
+            success : dataSaved, error : errorHandler
+        });
+    }
+}
+    
+function dataSaved(callresult){
+    console.log("Data saved: " + callresult);
 }
 
 
-function saveMatchHistory(){
-    var ajaxHandlerScript="https://fe.it-academy.by/AjaxStringStorage2.php";
-    var stringName = "KHRAMKO_TENNIS_GAMEHISTORY";
-    var gameHistory = {};
-    var historyArr = [];
-    gameHistory.player1 = {name : gameAssets.player1.name, score : gameAssets.player1.score, color: gameAssets.player1.color};
-    gameHistory.player2 = {name : gameAssets.player2.name, score : gameAssets.player2.score, color: gameAssets.player2.color};
-    historyArr.push(gameHistory);
-    var historyJSON = JSON.stringify(historyArr);
-    console.log(historyJSON);
-    $.ajax(
-        {
-            url : ajaxHandlerScript, type : 'POST', cache : false, dataType:'json',
-            data : { f : 'INSERT', n : stringName },
-            success : dataSaved, error : errorHandler
-        }
-    );
-    function dataSaved(callresult) {
-        console.log("Данные игры сохранены");
-        console.log(callresult);
+function readHistory() {
+    if(!container.contains(historyView)){
+        buttonHistory.setAttribute("disabled", "disabled");
+        buttonHideHistory.removeAttribute("disabled");
+        $.ajax( {
+            url : ajaxHandlerScript,
+            type : 'POST', dataType:'json',
+            data : { f : 'READ', n : stringName},
+            cache : false,
+            success : displayHistory,
+            error : errorHandler
+        });
     }
+}
 
-    function errorHandler(jqXHR,statusStr,errorStr) {
-        alert(statusStr+' '+errorStr);
+function displayHistory(callresult){
+    historyView = document.createElement("div");
+    historyView.classList.add("history-table");
+    historyArr = JSON.parse(callresult.result);
+    for(var i = 0; i<historyArr.length; i++){
+        // historyArr.length - количество строк таблицы
+        var historyDataRow = document.createElement("div");
+        historyDataRow.classList.add("history-data-row");
+        for(var j = 0; j<Object.keys(historyArr[i]).length; j++){
+            // Object.keys(historyArr[i]).length - количество игроков в каждой строке
+            for(var n = 0; n<Object.keys(historyArr[i][Object.keys(historyArr[i])[j]]).length; n++){
+                // Object.keys(historyArr[i][Object.keys(historyArr[i])[j]]).length - количество ячеек
+                var cell = document.createElement("div");
+                cell.innerHTML = historyArr[i][Object.keys(historyArr[i])[j]][Object.keys(historyArr[i][Object.keys(historyArr[i])[j]])[n]];
+                cell.classList.add("history-data-cell");
+                cell.classList.add(Object.keys(historyArr[i][Object.keys(historyArr[i])[j]])[n]);
+                //historyArr[i][Object.keys(historyArr[i])[j]];
+                if(cell.classList.contains("color")){
+                    cell.style.backgroundColor = cell.innerHTML;
+                    cell.innerHTML = "";
+                }
+                historyDataRow.appendChild(cell);
+            }
+        }
+        historyView.appendChild(historyDataRow);   
     }
+    container.appendChild(historyView);
+}
+
+function hideHistory(){
+    container.removeChild(historyView);
+    buttonHideHistory.setAttribute("disabled", "disabled");
+    buttonHistory.removeAttribute("disabled");
+}
+
+function errorHandler(jqXHR,statusStr,errorStr) {
+    alert(statusStr+' '+errorStr);
 }
