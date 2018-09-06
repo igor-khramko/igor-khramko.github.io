@@ -14,7 +14,7 @@ body{
 }
 .game-area{
     background-image: url("../image/bg-field.png");
-    background-size: cover;
+    background-size: 100% 100%;
     width: 500px;
     height: 300px;
     margin: 0 auto;
@@ -216,7 +216,6 @@ form{
     }
     .game-area{
         width: 100%;
-        background-size: 100% 100%;
     }
 }
 
