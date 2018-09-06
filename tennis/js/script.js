@@ -192,13 +192,13 @@ var gameAssets = (function createGameAssets(){
 
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
     console.log("touch поддерживается");
+    window.preventDefault();
     function touchMove(elem){
         var previousTouch;
         $(elem.view).on('touchstart', function (e){
             previousTouch = e.originalEvent.touches[0].clientY;
         });
         $(elem.view).on('touchmove', function (e){
-            e.preventDefault();
             for(var i = 0; i<e.originalEvent.changedTouches.length; i++){
                 var currentTouch = e.originalEvent.changedTouches[0].clientY;
                 if(previousTouch > currentTouch){
