@@ -5,6 +5,7 @@ var gameArea = document.querySelector(".game-area");
 var buttonStart = document.querySelector(".button-start");
 var buttonHistory = document.querySelector(".button-history");
 var buttonHideHistory = document.querySelector(".button-hide-history");
+var ballSpeed = document.querySelector(".speed");
 var score1 = document.querySelector(".player1Score");
 var score2 = document.querySelector(".player2Score");
 var player1Name = document.querySelector(".player1Name");
@@ -40,21 +41,20 @@ form1button.addEventListener("click", submitP1data);
 form2button.addEventListener("click", submitP2data);
 
 p1name.focus();
-
 var gameAssets = (function createGameAssets(){
     var field = document.createElementNS("http://www.w3.org/2000/svg","svg");
     var fieldRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
     var playingField = {
-        width : 500,
-        height : 300,
+        width : gameArea.clientWidth,
+        height : gameArea.clientHeight
     }
     function setAttributesPlayingField(){
         field.setAttribute("width", playingField.width);
         field.setAttribute("height", playingField.height);
     }
     var playingFieldRect = {
-        width : 500,                                                //ширина игрового поля
-        height : 300,                                               //высота игрового поля
+        width : playingField.width,                                                //ширина игрового поля
+        height : playingField.height,                                               //высота игрового поля
         x : 0,                                                      //координата x точки построения игрового поля (левый верхний угол)
         y : 0,                                                      //координата y точки построения игрового поля (левый верхний угол)
         fill : "none",                                              //цвет заливки игрового поля
@@ -73,9 +73,6 @@ var gameAssets = (function createGameAssets(){
     }
     setAttributesPlayingField();
     setAttributesPlayingFieldRect();
-
-    gameArea.style.width = playingField.width + "px";
-    gameArea.style.height = playingField.height + "px";
     
     function Player(){
         var self = this;
@@ -165,13 +162,13 @@ var RAF=
 function keyMoveDown(EO){
     EO=EO||window.event;
     if (EO.keyCode==16){
-        gameAssets.player1.speedY = -2;
+        gameAssets.player1.speedY = -2*ballSpeed.value;
     } else if(EO.keyCode==17){
-        gameAssets.player1.speedY = 2;
+        gameAssets.player1.speedY = 2*ballSpeed.value;
     } else if(EO.keyCode==38){
-        gameAssets.player2.speedY = -2;
+        gameAssets.player2.speedY = -2*ballSpeed.value;
     } else if(EO.keyCode==40){
-        gameAssets.player2.speedY = 2;
+        gameAssets.player2.speedY = 2*ballSpeed.value;
     }
 }
     
@@ -189,8 +186,7 @@ function keyMoveUp(EO){
 }
 
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-    console.log("touch поддерживается");
-    
+    console.log("touch поддерживается");  
     function touchMove(elem){
         var previousTouch;
         $(elem.view).on('touchstart', function (e){
@@ -201,9 +197,9 @@ if (('ontouchstart' in window) || window.DocumentTouch && document instanceof Do
             for(var i = 0; i<e.originalEvent.changedTouches.length; i++){
                 var currentTouch = e.originalEvent.changedTouches[0].clientY;
                 if(previousTouch > currentTouch){
-                    elem.speedY = -2;
+                    elem.speedY = -2*ballSpeed.value;
                 }else if(previousTouch < currentTouch){
-                    elem.speedY = 2;
+                    elem.speedY = 2*ballSpeed.value;
                 }
                 previousTouch = currentTouch;
             }
@@ -301,18 +297,19 @@ function start(){
         
         var temp = Math.random();
         if(0 < temp && temp < 0.25){
-            gameAssets.ball.speedX = 3;
-            gameAssets.ball.speedY = 1.5;
+            gameAssets.ball.speedX = 2*ballSpeed.value;
+            gameAssets.ball.speedY = 1*ballSpeed.value;
         } else if(0.25 < temp && temp < 0.5){
-            gameAssets.ball.speedX = -3;
-            gameAssets.ball.speedY = -1.5;
+            gameAssets.ball.speedX = -2*ballSpeed.value;
+            gameAssets.ball.speedY = -1*ballSpeed.value;
         } else if(0.5 < temp && temp < 0.75){
-            gameAssets.ball.speedX = 3;
-            gameAssets.ball.speedY = -1.5;
+            gameAssets.ball.speedX = 2*ballSpeed.value;
+            gameAssets.ball.speedY = -1*ballSpeed.value;
         } else if(0.75 < temp && temp < 1){
-            gameAssets.ball.speedX = - 3;
-            gameAssets.ball.speedY = 1.5;
+            gameAssets.ball.speedX = -2*ballSpeed.value;
+            gameAssets.ball.speedY = 1*ballSpeed.value;
         }
+        console.log(gameAssets.ball.speedX,gameAssets.ball.speedY);
         tick();
     }
     buttonStart.setAttribute("disabled", "disabled");

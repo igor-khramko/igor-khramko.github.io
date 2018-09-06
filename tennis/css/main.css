@@ -30,9 +30,14 @@ body{
     justify-content: space-around;
 }
 
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .button-start, .button-history, .button-hide-history{
-    display: inline-block;
-    margin: 20px;
+    display: block;
+    margin: 20px 15px;
     padding: 5px 0;
     width: 115px;
     outline: none;
@@ -54,6 +59,11 @@ body{
 .button-start:hover, .button-history:hover, .button-hide-history:hover{
     cursor: pointer;
     background: #5eff00a1;
+}
+
+.speed{
+    height: 29px;
+    margin: 20px 15px;
 }
 
 form{
@@ -166,8 +176,6 @@ form{
             transform: scale(1.1);
 }
 
-.history-table{}
-
 .history-data-row{
     display: flex;
     margin: 20px 0;
@@ -175,13 +183,57 @@ form{
 }
 
 .history-data-cell{
-    width: 15%;
+    width: 10%;
     height: 20px;
 }
-
+.history-data-cell.name{
+    flex-basis: 90px;
+}
 
 @media (max-width: 1200px){
     .welcome-form{
         width: 25%;
+    }
+}
+
+@media (max-width: 500px){
+    .scoreView{
+        font-size: 12px;
+        width: 200px;
+    }
+    .buttons{
+        justify-content: center;
+    }
+    .button-start, .button-history, .button-hide-history{
+        margin: 8px;
+        padding: 5px 0;
+        font-size: 12px;
+        width: 100px;
+    }
+    .speed{
+        margin: 8px;
+        padding: 5px 0;
+    }
+    .game-area{
+        width: 100%;
+        background-size: 100% 100%;
+    }
+}
+
+@media (max-width: 400px){
+    .button-start, .button-history, .button-hide-history{
+        width: 40%;
+    }
+    .game-area{
+        height: 250px;
+    }
+    .history-data-row{
+        font-size: 10px;
+    }
+    .history-data-cell{
+        height: 10px;
+    }
+    .history-data-cell.name{
+        flex-basis: 55px;
     }
 }
