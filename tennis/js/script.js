@@ -33,8 +33,6 @@ var stringName = "KHRAMKO_TENNIS_HISTORY";
 var updatePassword;
 var historyView;
 
-
-
 buttonStart.addEventListener("click", start);
 buttonHistory.addEventListener("click", readHistory);
 buttonHideHistory.addEventListener("click", hideHistory);
@@ -42,46 +40,6 @@ form1button.addEventListener("click", submitP1data);
 form2button.addEventListener("click", submitP2data);
 
 p1name.focus();
-
-var RAF=
-        // находим, какой метод доступен
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        // ни один не доступен
-        // будем работать просто по таймеру
-        function(callback)
-            { window.setTimeout(callback, 1000 / 60); }
-        ;
-
-
-function keyMoveDown(EO){
-    EO=EO||window.event;
-    if (EO.keyCode==16){
-        gameAssets.player1.speedY = -2;
-    } else if(EO.keyCode==17){
-        gameAssets.player1.speedY = 2;
-    } else if(EO.keyCode==38){
-        gameAssets.player2.speedY = -2;
-    } else if(EO.keyCode==40){
-        gameAssets.player2.speedY = 2;
-    }
-}
-    
-function keyMoveUp(EO){
-    EO=EO||window.event;
-    if (EO.keyCode==16){
-        gameAssets.player1.speedY = 0;
-    } else if(EO.keyCode==17){
-        gameAssets.player1.speedY = 0;
-    } else if(EO.keyCode==38){
-        gameAssets.player2.speedY = 0;
-    } else if(EO.keyCode==40){
-        gameAssets.player2.speedY = 0;
-    }
-}
 
 var gameAssets = (function createGameAssets(){
     var field = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -190,9 +148,49 @@ var gameAssets = (function createGameAssets(){
     
 })();
 
+var RAF=
+        // находим, какой метод доступен
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        // ни один не доступен
+        // будем работать просто по таймеру
+        function(callback)
+            { window.setTimeout(callback, 1000 / 60); }
+        ;
+
+
+function keyMoveDown(EO){
+    EO=EO||window.event;
+    if (EO.keyCode==16){
+        gameAssets.player1.speedY = -2;
+    } else if(EO.keyCode==17){
+        gameAssets.player1.speedY = 2;
+    } else if(EO.keyCode==38){
+        gameAssets.player2.speedY = -2;
+    } else if(EO.keyCode==40){
+        gameAssets.player2.speedY = 2;
+    }
+}
+    
+function keyMoveUp(EO){
+    EO=EO||window.event;
+    if (EO.keyCode==16){
+        gameAssets.player1.speedY = 0;
+    } else if(EO.keyCode==17){
+        gameAssets.player1.speedY = 0;
+    } else if(EO.keyCode==38){
+        gameAssets.player2.speedY = 0;
+    } else if(EO.keyCode==40){
+        gameAssets.player2.speedY = 0;
+    }
+}
+
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
     console.log("touch поддерживается");
-    $(window).off('scroll');
+    
     function touchMove(elem){
         var previousTouch;
         $(elem.view).on('touchstart', function (e){
@@ -316,6 +314,7 @@ function start(){
 
 function tick() {
     if(gameStatus == "inGame"){
+        $(gameArea).off('scroll');
         gameAssets.player1.center.y+=gameAssets.player1.speedY;
         gameAssets.player2.center.y+=gameAssets.player2.speedY;
         gameAssets.player1.move(gameAssets.player1.center.y);
