@@ -212,9 +212,14 @@ if (('ontouchstart' in window) || window.DocumentTouch && document instanceof Do
             elem.speedY = 0;
         });
     }
+    function scrollOff(elem){
+        $(elem).on('touchmove', function (e){
+            e.preventDefault();
+        });
+    }
+    scrollOff(gameArea);
     touchMove(gameAssets.player1);
     touchMove(gameAssets.player2);
-
 } else{
     console.log("touch не поддерживается");
     window.addEventListener("keydown", keyMoveDown);
