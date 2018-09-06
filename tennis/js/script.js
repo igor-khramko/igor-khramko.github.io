@@ -33,13 +33,15 @@ var stringName = "KHRAMKO_TENNIS_HISTORY";
 var updatePassword;
 var historyView;
 
-if ('ontouchmove' in window) {
-    // window.addEventListener("touchstart", touchMove);
+if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+    // window.addEventListener("touchstart", touchStart);
     window.addEventListener("touchmove", touchMove);
-    // window.addEventListener("touchend", touchMove);
-    window.addEventListener("touchcancel", touchMove);
+    // window.addEventListener("touchend", touchEnd);
+    window.addEventListener("touchcancel", touchCancel);
+    alert("touch не поддерживается");
 } else{
-    window.addEventListener("keydown", keyMoveDovn);
+    alert("touch не поддерживается");
+    window.addEventListener("keydown", keyMoveDown);
     window.addEventListener("keyup", keyMoveUp);
 }
 buttonStart.addEventListener("click", start);
@@ -67,11 +69,11 @@ function touchMove(EO){
     EO=EO||window.event;
     /* browser with Touch Events support */
     if(0 < EO.targetTouches[0].clientX && EO.targetTouches[0].clientX < gameAssets.player1.width && EO.targetTouches[0].clientY > gameAssets.player1.top && EO.targetTouches[0].clientY < gameAssets.player1.bottom){
-
+        EO.touches
     }
 }
 
-function keyMoveDovn(EO){
+function keyMoveDown(EO){
     EO=EO||window.event;
     if (EO.keyCode==16){
         gameAssets.player1.speedY = -2;
