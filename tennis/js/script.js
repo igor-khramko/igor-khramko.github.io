@@ -38,7 +38,7 @@ if (('ontouchstart' in window) || window.DocumentTouch && document instanceof Do
     window.addEventListener("touchmove", touchMove);
     // window.addEventListener("touchend", touchEnd);
     window.addEventListener("touchcancel", touchCancel);
-    alert("touch не поддерживается");
+    alert("touch поддерживается");
 } else{
     alert("touch не поддерживается");
     window.addEventListener("keydown", keyMoveDown);
