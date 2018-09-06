@@ -192,7 +192,7 @@ var gameAssets = (function createGameAssets(){
 
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
     console.log("touch поддерживается");
-    window.preventDefault();
+    $(window).off('scroll');
     function touchMove(elem){
         var previousTouch;
         $(elem.view).on('touchstart', function (e){
