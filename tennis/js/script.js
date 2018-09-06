@@ -33,17 +33,8 @@ var stringName = "KHRAMKO_TENNIS_HISTORY";
 var updatePassword;
 var historyView;
 
-if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-    // window.addEventListener("touchstart", touchStart);
-    window.addEventListener("touchmove", touchMove);
-    // window.addEventListener("touchend", touchEnd);
-    window.addEventListener("touchcancel", touchCancel);
-    alert("touch поддерживается");
-} else{
-    alert("touch не поддерживается");
-    window.addEventListener("keydown", keyMoveDown);
-    window.addEventListener("keyup", keyMoveUp);
-}
+
+
 buttonStart.addEventListener("click", start);
 buttonHistory.addEventListener("click", readHistory);
 buttonHideHistory.addEventListener("click", hideHistory);
@@ -65,13 +56,6 @@ var RAF=
             { window.setTimeout(callback, 1000 / 60); }
         ;
 
-function touchMove(EO){
-    EO=EO||window.event;
-    /* browser with Touch Events support */
-    if(0 < EO.targetTouches[0].clientX && EO.targetTouches[0].clientX < gameAssets.player1.width && EO.targetTouches[0].clientY > gameAssets.player1.top && EO.targetTouches[0].clientY < gameAssets.player1.bottom){
-        EO.touches
-    }
-}
 
 function keyMoveDown(EO){
     EO=EO||window.event;
@@ -205,6 +189,37 @@ var gameAssets = (function createGameAssets(){
     return {playingFieldRect, player1, player2, ball};
     
 })();
+
+if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+    console.log("touch поддерживается");
+    function touchMove(elem){
+        var previousTouch;
+        $(elem.view).on('touchstart', function (e){
+            previousTouch = e.originalEvent.touches[0].clientY;
+        });
+        $(elem.view).on('touchmove', function (e){
+            for(var i = 0; i<e.originalEvent.changedTouches.length; i++){
+                var currentTouch = e.originalEvent.changedTouches[0].clientY;
+                if(previousTouch > currentTouch){
+                    elem.speedY = -2;
+                }else if(previousTouch < currentTouch){
+                    elem.speedY = 2;
+                }
+                previousTouch = currentTouch;
+            }
+        });
+        $(elem.view).on('touchend', function (e){
+            elem.speedY = 0;
+        });
+    }
+    touchMove(gameAssets.player1);
+    touchMove(gameAssets.player2);
+
+} else{
+    console.log("touch не поддерживается");
+    window.addEventListener("keydown", keyMoveDown);
+    window.addEventListener("keyup", keyMoveUp);
+}
 
 score1.innerHTML = gameAssets.player1.score;
 score2.innerHTML = gameAssets.player2.score;
@@ -461,7 +476,6 @@ function restoreHistory(callresult){
 function dataSaved(callresult){
     console.log("Data saved: " + callresult);
 }
-
 
 function readHistory() {
     if(!container.contains(historyView)){

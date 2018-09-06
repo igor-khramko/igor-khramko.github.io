@@ -56,6 +56,10 @@ body{
     background: #5eff00a1;
 }
 
+form{
+    display:none;
+}
+
 .welcome-form{
     position: absolute;
     width: 50%;
