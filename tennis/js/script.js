@@ -314,7 +314,6 @@ function start(){
 
 function tick() {
     if(gameStatus == "inGame"){
-        $(gameArea).off('scroll');
         gameAssets.player1.center.y+=gameAssets.player1.speedY;
         gameAssets.player2.center.y+=gameAssets.player2.speedY;
         gameAssets.player1.move(gameAssets.player1.center.y);

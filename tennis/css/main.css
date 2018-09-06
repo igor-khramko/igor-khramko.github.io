@@ -180,8 +180,15 @@ form{
 }
 
 
-@media (max-width: 1200){
+@media (max-width: 1200px){
     .welcome-form{
         width: 25%;
+    }
+}
+
+@media (max-width: 400px){
+    .game-area{
+        width: 100%;
+        height: 200px;
     }
 }
