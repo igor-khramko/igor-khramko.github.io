@@ -66,17 +66,19 @@ body{
     margin: 20px 15px;
 }
 
-form{
+/* form{
     display:none;
-}
+} */
 
 .welcome-form{
     position: absolute;
-    width: 50%;
-    height: 45%;
-    min-width: 350px;
-    max-width: 600px;
-    top: -150px;
+    width: 25%;
+    height: 50%;
+    min-width: 400px;
+    max-width: 450px;
+    min-height: 300px;
+    max-height: 600px;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
@@ -190,12 +192,6 @@ form{
     flex-basis: 90px;
 }
 
-@media (max-width: 1200px){
-    .welcome-form{
-        width: 25%;
-    }
-}
-
 @media (max-width: 500px){
     .scoreView{
         font-size: 12px;
@@ -217,14 +213,58 @@ form{
     .game-area{
         width: 100%;
     }
+
+    .welcome-form{
+        min-width: 300px;
+        max-width: 350px;
+        min-height: 250px;
+        max-height: 400px;
+        border-radius: 15px;
+        padding: 20px 25px;
+        line-height: 30px;
+        font-size: 15px;
+    }
+    
+    .welcome{
+        margin-bottom: 10px;
+        line-height: 20px;
+        font-size: 15px;
+    }
+    
+    .player-name-input-field{
+        line-height: 20px;
+        font-size: 15px;
+        padding: 0 20px;
+    }
+    
+    .player-choose-color{
+        display: block;
+        width: 70%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        height: 30px;
+    }
+    
+    .welcome-submit{
+        width: 70%;
+        line-height: 20px;
+        border-radius: 20px;
+        display: block;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 400px){
     .button-start, .button-history, .button-hide-history{
-        width: 40%;
+        width: 23%;
+        padding: 0;
     }
     .game-area{
         height: 250px;
+    }
+    .welcome-form{
+        min-width: unset;
+        width: 95%;
     }
     .history-data-row{
         font-size: 10px;
