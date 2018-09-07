@@ -43,6 +43,47 @@ form1button.addEventListener("click", submitP1data);
 form2button.addEventListener("click", submitP2data);
 
 p1name.focus();
+
+var RAF=
+        // находим, какой метод доступен
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        // ни один не доступен
+        // будем работать просто по таймеру
+        function(callback)
+            { window.setTimeout(callback, 1000 / 60); }
+        ;
+
+
+function keyMoveDown(EO){
+    EO=EO||window.event;
+    if (EO.keyCode==16){
+        gameAssets.player1.speedY = -2*ballSpeed.value;
+    } else if(EO.keyCode==17){
+        gameAssets.player1.speedY = 2*ballSpeed.value;
+    } else if(EO.keyCode==38){
+        gameAssets.player2.speedY = -2*ballSpeed.value;
+    } else if(EO.keyCode==40){
+        gameAssets.player2.speedY = 2*ballSpeed.value;
+    }
+}
+    
+function keyMoveUp(EO){
+    EO=EO||window.event;
+    if (EO.keyCode==16){
+        gameAssets.player1.speedY = 0;
+    } else if(EO.keyCode==17){
+        gameAssets.player1.speedY = 0;
+    } else if(EO.keyCode==38){
+        gameAssets.player2.speedY = 0;
+    } else if(EO.keyCode==40){
+        gameAssets.player2.speedY = 0;
+    }
+}
+
 var gameAssets = (function createGameAssets(){
     var field = document.createElementNS("http://www.w3.org/2000/svg","svg");
     var fieldRect = document.createElementNS("http://www.w3.org/2000/svg","rect");
@@ -147,46 +188,6 @@ var gameAssets = (function createGameAssets(){
     
 })();
 
-var RAF=
-        // находим, какой метод доступен
-        window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        // ни один не доступен
-        // будем работать просто по таймеру
-        function(callback)
-            { window.setTimeout(callback, 1000 / 60); }
-        ;
-
-
-function keyMoveDown(EO){
-    EO=EO||window.event;
-    if (EO.keyCode==16){
-        gameAssets.player1.speedY = -2*ballSpeed.value;
-    } else if(EO.keyCode==17){
-        gameAssets.player1.speedY = 2*ballSpeed.value;
-    } else if(EO.keyCode==38){
-        gameAssets.player2.speedY = -2*ballSpeed.value;
-    } else if(EO.keyCode==40){
-        gameAssets.player2.speedY = 2*ballSpeed.value;
-    }
-}
-    
-function keyMoveUp(EO){
-    EO=EO||window.event;
-    if (EO.keyCode==16){
-        gameAssets.player1.speedY = 0;
-    } else if(EO.keyCode==17){
-        gameAssets.player1.speedY = 0;
-    } else if(EO.keyCode==38){
-        gameAssets.player2.speedY = 0;
-    } else if(EO.keyCode==40){
-        gameAssets.player2.speedY = 0;
-    }
-}
-
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
     console.log("touch поддерживается");  
     function touchMove1(elem){
@@ -255,10 +256,8 @@ function submitP1data(){
     } else {
         gameAssets.player1.name = p1name.value.trim();                  //добавляем объекту player1 класса Player свойство name 
         player1Name.innerHTML = gameAssets.player1.name;                //выводим имя игрока на html-страницу
-
         gameAssets.player1.color = p1color.value;                           //добавляем объекту player1 класса Player свойство color 
         gameAssets.player1.setDefaultAttributes();                          //устанавливаем представлению игрока атрибуты по умолчанию (в т.ч. цвет)
-        
         form1.classList.remove("jackInTheBox");
         form1.classList.add("zoomOut");
         form2.classList.remove("hidden");                                               //"показываем" форму второго игрока
@@ -272,16 +271,9 @@ function submitP2data(){
         alert("Заполните поле имени");
         p2name.focus();
     } else {
-        gameAssets.player2.name = p2name.value.trim();                  //добавляем объекту player1 класса Player свойство name 
+        gameAssets.player2.name = p2name.value.trim();                  //добавляем объекту player2 класса Player свойство name 
         player2Name.innerHTML = gameAssets.player2.name;                //выводим имя игрока на html-страницу
-
-        for(var i = 0; i< p2gender.length; i++){                            //получаем выбранное значение пола игрока
-            if(p2gender[i].name === 'gender2' && p2gender[i].checked){ 
-                gameAssets.player2.gender = p2gender[i].value;
-            }
-        }
-    
-        gameAssets.player2.color = p2color.value;                           //добавляем объекту player1 класса Player свойство color 
+        gameAssets.player2.color = p2color.value;                           //добавляем объекту player2 класса Player свойство color 
         gameAssets.player2.setDefaultAttributes();                          //устанавливаем представлению игрока атрибуты по умолчанию (в т.ч. цвет)
         form1.classList.add("hidden");   
         form1.classList.remove("zoomOut");
@@ -320,6 +312,7 @@ function start(){
     noiseAudio.pause();
     noiseAudio.currentTime = 0;
     var temp = Math.random();
+    //случайным образом задаём одно из 4-х направлений полёта мяча
     if(0 < temp && temp < 0.25){
         gameAssets.ball.speedX = 2*ballSpeed.value;
         gameAssets.ball.speedY = 1*ballSpeed.value;
@@ -467,6 +460,7 @@ function playNoiseAudio() {
 }
 
 //Jquery AJAX
+//чтение строки и планирование её изменения
 function saveHistory() {
     updatePassword=Math.random();
     $.ajax( {
@@ -476,20 +470,11 @@ function saveHistory() {
         }
     );
 }
-    
+//изменение заблокированной строки
 function restoreHistory(callresult){
     if (callresult.error!=undefined )
         alert(callresult.error); 
     else {
-        //сохранение дефолтных данных
-        // historyArr = [
-        //     {player1:{color: "#0000ff", name: "Leonardo", score: 5}, player2:{score: 4, name: "Donatello", color: "#800080"}},
-        //     {player1:{color: "#ffa500", name: "Michelangelo", score: 3},player2:{score: 5, name: "Raphael", color: "#ff0000"}},
-        //     {player1:{color: "#ff0000", name: "Raphael", score: 5},player2:{score: 2, name: "Leonardo", color: "#0000ff"}},
-        //     {player1:{color: "#800080", name: "Donatello", score: 4},player2:{score: 5, name: "Michelangelo", color: "#ffa500"}},
-        //     {player1:{color: "#ffffff", name: "Casey", score: 0},player2:{score: 5, name: "Splinter", color: "#804000"}}
-        // ]
-        // var historyJSON = JSON.stringify(historyArr); //переводим массив информации об истории игр в JSON 
         historyArr = JSON.parse(callresult.result);
         var gameHistory = {};  //хэш для хранения сохраняемой строки
         gameHistory.player1 = {"color": gameAssets.player1.color, "name" : gameAssets.player1.name, "score" : gameAssets.player1.score};
@@ -505,7 +490,7 @@ function restoreHistory(callresult){
         });
     }
 }
-    
+//успешное изменение истории в хранилище
 function dataSaved(callresult){
     alert("Счёт игры сохранён");
     buttonSaveHistory.classList.remove("button-save-enabled");
@@ -514,7 +499,7 @@ function dataSaved(callresult){
     setDefaultScore();
     buttonStart.focus();
 }
-
+//чтение истории из хранилища 
 function readHistory() {
     if(!container.contains(historyView)){
         buttonHistory.setAttribute("disabled", "disabled");
@@ -529,7 +514,7 @@ function readHistory() {
         });
     }
 }
-
+//вывод истории на страницу (построение разметки)
 function displayHistory(callresult){
     historyView = document.createElement("div");
     historyView.classList.add("history-table");
@@ -557,7 +542,7 @@ function displayHistory(callresult){
     }
     container.appendChild(historyView);
 }
-
+//удаление разметки с историей со страницы
 function hideHistory(){
     container.removeChild(historyView);
     buttonHideHistory.setAttribute("disabled", "disabled");
