@@ -187,7 +187,28 @@ function keyMoveUp(EO){
 
 if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
     console.log("touch поддерживается");  
-    function touchMove(elem){
+    function touchMove1(elem){
+        var previousTouch;
+        $(elem.view).on('touchstart', function (e){
+            previousTouch = e.originalEvent.touches[0].clientY;
+        });
+        $(elem.view).on('touchmove', function (e){
+            e.preventDefault();
+            for(var i = 0; i<e.originalEvent.changedTouches.length; i++){
+                var currentTouch = e.originalEvent.changedTouches[0].clientY;
+                if(previousTouch > currentTouch){
+                    elem.speedY = -2*ballSpeed.value;
+                }else if(previousTouch < currentTouch){
+                    elem.speedY = 2*ballSpeed.value;
+                }
+                previousTouch = currentTouch;
+            }
+        });
+        $(elem.view).on('touchend', function (e){
+            elem.speedY = 0;
+        });
+    }
+    function touchMove2(elem){
         var previousTouch;
         $(elem.view).on('touchstart', function (e){
             previousTouch = e.originalEvent.touches[0].clientY;
@@ -214,8 +235,8 @@ if (('ontouchstart' in window) || window.DocumentTouch && document instanceof Do
         });
     }
     scrollOff(gameArea);
-    touchMove(gameAssets.player1);
-    touchMove(gameAssets.player2);
+    touchMove1(gameAssets.player1);
+    touchMove2(gameAssets.player2);
 } else{
     console.log("touch не поддерживается");
     window.addEventListener("keydown", keyMoveDown);
@@ -347,15 +368,13 @@ function tick() {
         if (gameAssets.ball.posX <= gameAssets.player1.width + gameAssets.ball.radius && gameAssets.ball.posY>gameAssets.player1.top - 3*gameAssets.ball.radius/2 && gameAssets.ball.posY+gameAssets.ball.radius/2<gameAssets.player1.bottom){
             gameAssets.ball.speedX=-gameAssets.ball.speedX;
             gameAssets.ball.posX=gameAssets.player1.width + gameAssets.ball.radius;  
-            playBallAudio()
-            window.navigator.vibrate(1000);
+            playBallAudio();
         }
         // мяч попал в ракетку игрока 2
         if (gameAssets.ball.posX >= gameAssets.playingFieldRect.width - gameAssets.player2.width - gameAssets.ball.radius && gameAssets.ball.posY>gameAssets.player2.top - gameAssets.ball.radius/2 && gameAssets.ball.posY+gameAssets.ball.radius/2<gameAssets.player2.bottom){
             gameAssets.ball.speedX=-gameAssets.ball.speedX;
             gameAssets.ball.posX=gameAssets.playingFieldRect.width - gameAssets.player2.width - gameAssets.ball.radius;
-            playBallAudio()
-            window.navigator.vibrate(1000);
+            playBallAudio();
         }
         // вылетел ли мяч левее стены?
         if (gameAssets.ball.posX - gameAssets.ball.radius<0 && gameStatus == "inGame"){
@@ -369,7 +388,7 @@ function tick() {
             gameStatus = "onPause";
             playNoiseAudio();
             playApplauseAudio();
-            window.navigator.vibrate([1000, 1000, 1000]);
+            window.navigator.vibrate(1000);
             buttonStart.removeAttribute("disabled");
             buttonStart.focus();
         }
@@ -385,7 +404,7 @@ function tick() {
                 gameStatus = "onPause";
                 playNoiseAudio();
                 playApplauseAudio();
-                window.navigator.vibrate([1000, 1000, 1000]);
+                window.navigator.vibrate(1000);
                 buttonStart.removeAttribute("disabled");
                 buttonStart.focus();
         }
