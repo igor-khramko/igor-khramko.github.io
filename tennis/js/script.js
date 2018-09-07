@@ -5,6 +5,7 @@ var gameArea = document.querySelector(".game-area");
 var buttonStart = document.querySelector(".button-start");
 var buttonHistory = document.querySelector(".button-history");
 var buttonHideHistory = document.querySelector(".button-hide-history");
+var buttonSaveHistory = document.querySelector(".button-save");
 var ballSpeed = document.querySelector(".speed");
 var score1 = document.querySelector(".player1Score");
 var score2 = document.querySelector(".player2Score");
@@ -37,6 +38,7 @@ var historyView;
 buttonStart.addEventListener("click", start);
 buttonHistory.addEventListener("click", readHistory);
 buttonHideHistory.addEventListener("click", hideHistory);
+buttonSaveHistory.addEventListener("click", saveHistory);
 form1button.addEventListener("click", submitP1data);
 form2button.addEventListener("click", submitP2data);
 
@@ -307,37 +309,31 @@ function setDefaultPosition(){
 }
 
 function start(){
-    if(checkScore()){
-        console.log("stop");
-    } else{
-        setDefaultPosition();
-        applauseAudio.pause(); 
-        applauseAudio.currentTime = 0;
-        noiseAudio.pause();
-        noiseAudio.currentTime = 0;
-        
-        var temp = Math.random();
-        if(0 < temp && temp < 0.25){
-            gameAssets.ball.speedX = 2*ballSpeed.value;
-            gameAssets.ball.speedY = 1*ballSpeed.value;
-        } else if(0.25 < temp && temp < 0.5){
-            gameAssets.ball.speedX = -2*ballSpeed.value;
-            gameAssets.ball.speedY = -1*ballSpeed.value;
-        } else if(0.5 < temp && temp < 0.75){
-            gameAssets.ball.speedX = 2*ballSpeed.value;
-            gameAssets.ball.speedY = -1*ballSpeed.value;
-        } else if(0.75 < temp && temp < 1){
-            gameAssets.ball.speedX = -2*ballSpeed.value;
-            gameAssets.ball.speedY = 1*ballSpeed.value;
-        }
-        console.log(gameAssets.ball.speedX,gameAssets.ball.speedY);
-        tick();
+    setDefaultPosition();
+    applauseAudio.pause(); 
+    applauseAudio.currentTime = 0;
+    noiseAudio.pause();
+    noiseAudio.currentTime = 0;
+    var temp = Math.random();
+    if(0 < temp && temp < 0.25){
+        gameAssets.ball.speedX = 2*ballSpeed.value;
+        gameAssets.ball.speedY = 1*ballSpeed.value;
+    } else if(0.25 < temp && temp < 0.5){
+        gameAssets.ball.speedX = -2*ballSpeed.value;
+        gameAssets.ball.speedY = -1*ballSpeed.value;
+    } else if(0.5 < temp && temp < 0.75){
+        gameAssets.ball.speedX = 2*ballSpeed.value;
+        gameAssets.ball.speedY = -1*ballSpeed.value;
+    } else if(0.75 < temp && temp < 1){
+        gameAssets.ball.speedX = -2*ballSpeed.value;
+        gameAssets.ball.speedY = 1*ballSpeed.value;
     }
+    tick();
     buttonStart.setAttribute("disabled", "disabled");
 }
 
 function tick() {
-    if(gameStatus == "inGame"){
+    if(gameStatus == "inGame" && (gameAssets.player1.score < 5 || gameAssets.player2.score < 5)){
         gameAssets.player1.center.y+=gameAssets.player1.speedY;
         gameAssets.player2.center.y+=gameAssets.player2.speedY;
         gameAssets.player1.move(gameAssets.player1.center.y);
@@ -421,9 +417,35 @@ function tick() {
             playBallAudio();
         }  
         RAF(tick);
+    } else if(gameAssets.player1.score == 5){
+        gameStatus = "endGame";
+        alert(`${gameAssets.player1.name}  победил(а)! Вы можете сохранить игру или начать сначала`);
+        if(confirm("Желаете сохранить игру?")){
+            buttonSaveHistory.removeAttribute("disabled");
+            buttonSaveHistory.classList.add("button-save-enabled");
+        } else{
+            gameStatus = "inGame";
+            score1.innerHTML = 0;
+            score2.innerHTML = 0;
+            gameAssets.player1.score = 0;
+            gameAssets.player2.score = 0;
+        }
+    } else if(gameAssets.player2.score == 5){
+        gameStatus = "endGame";
+        alert(`${gameAssets.player2.name}  победил(а)! Вы можете сохранить игру или начать сначала`);
+        if(confirm("Желаете сохранить игру?")){
+            buttonSaveHistory.removeAttribute("disabled");
+            buttonSaveHistory.classList.add("button-save-enabled");
+        } else{
+            gameStatus = "inGame";
+            score1.innerHTML = 0;
+            score2.innerHTML = 0;
+            gameAssets.player1.score = 0;
+            gameAssets.player2.score = 0;
+        }
     } else if(gameStatus == "onPause"){
         gameStatus = "inGame";
-    }
+    } 
     gameAssets.ball.move();
 }
 
@@ -453,17 +475,6 @@ function playNoiseAudio() {
     noiseAudio.play();
 }
 
-function checkScore(){
-    if(gameAssets.player1.score==5){
-        setDefaultPosition();
-        console.log(`${gameAssets.player1.name}  победил(а)!`);
-        saveHistory();
-    } else if(gameAssets.player2.score==5){
-        setDefaultPosition();
-        console.log(`${gameAssets.player2.name}  победил(а)!`);
-        saveHistory();
-    }
-}
 function saveHistory() {
     updatePassword=Math.random();
     $.ajax( {
@@ -478,6 +489,13 @@ function restoreHistory(callresult){
     if (callresult.error!=undefined )
         alert(callresult.error); 
     else {
+        // callresult.result = [
+        //     {"player1":{"color":"#0000ff","name":"Leonardo","score":5},"player2":{"score":4,"name":"Donatello","color":"#800080"}},
+        //     {"player1":{"color":"#ffa500","name":"Michelangelo","score":3},"player2":{"score":5,"name":"Raphael","color":"#ff0000"}},
+        //     {"player1":{"color":"#ff0000","name":"Raphael","score":5},"player2":{"score":2,"name":"Leonardo","color":"#0000ff"}},
+        //     {"player1":{"color":"#800080","name":"Donatello","score":4},"player2":{"score":5,"name":"Michelangelo","color":"#ffa500"}},
+        //     {"player1":{"color":"#ffffff","name":"Casey","score":0},"player2":{"score":5,"name":"Splinter","color":"#804000"}}
+        // ];
         historyArr = JSON.parse(callresult.result);
         var gameHistory = {};  //хэш для хранения сохраняемой строки
         gameHistory.player1 = {"color": gameAssets.player1.color, "name" : gameAssets.player1.name, "score" : gameAssets.player1.score};
@@ -495,7 +513,15 @@ function restoreHistory(callresult){
 }
     
 function dataSaved(callresult){
-    console.log("Data saved: " + callresult);
+    alert("Счёт игры сохранён");
+    buttonSaveHistory.classList.remove("button-save-enabled");
+    buttonSaveHistory.setAttribute("disabled", "disabled");
+    gameStatus = "inGame";
+    gameAssets.player1.score = 0;
+    gameAssets.player2.score = 0;
+    score1.innerHTML = 0;
+    score2.innerHTML = 0;
+    buttonStart.focus();
 }
 
 function readHistory() {

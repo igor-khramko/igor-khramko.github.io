@@ -25,11 +25,39 @@ body{
     margin: 0 auto;
 }
 
+.header-info{
+    display: flex;
+    justify-content: center;
+}
+
+.button-save{
+    display: block;
+    border-radius: 4px;
+    cursor: pointer;
+    background-image: url("../image/save.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    width: 32px;
+    height: 32px;
+    border:0;
+    margin-left: 20px;
+    outline: none;
+}
+
+.button-save-enabled:hover{
+    background-position: 0 1px;
+}
+
+.button-save-enabled:focus{
+    background-position: 0 2px;
+}
+
+
 .scoreView{
     border: 2px solid #190d85;
     box-sizing: border-box;
     width: 250px;
-    margin: 0 auto;
     font-size: 25px;
     display: flex;
     justify-content: space-around;

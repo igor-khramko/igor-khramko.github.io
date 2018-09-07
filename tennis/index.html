@@ -12,14 +12,16 @@
     <section class="main-content">
         <div class="container">
             <div class="header">
-                <div class="scoreView">
-                        <div class="player1Name">Player1</div>
-                        <div class="player1Score"></div>:<div class="player2Score"></div>
-                        <div class="player2Name">Player2</div>
+                <div class="header-info">
+                    <div class="scoreView">
+                            <div class="player1Name">Player1</div>
+                            <div class="player1Score"></div>:<div class="player2Score"></div>
+                            <div class="player2Name">Player2</div>
+                    </div>
+                    <button class="button-save" title="Сохранить игру" disabled></button>
                 </div>
                 <div class="buttons">
-                    <button class="button-start">Старт!</button>
-                    <!-- <button class="button-start" disabled>Старт!</button> -->
+                    <button class="button-start" disabled>Старт!</button>
                     <button class="button-history">История матчей</button>
                     <button class="button-hide-history" disabled>Скрыть историю</button>
                     <select class="speed">
@@ -41,7 +43,7 @@
             <form class="welcome-form form2 animated hidden">
                     <div class="welcome">Приветствуем Вас, Игрок №2!</div>
                     <div class="welcome-label">Введите Ваш игровой ник</div>
-                    <input type="text" class="player-name-input-field p2-name" placeholder="Player2">
+                    <input type="text" class="player-name-input-field p2-name" placeholder="Player2" maxlength="8" name="p2name">
                     <div class="welcome-label">Выберите цвет Вашей ракетки</div>
                     <input type="color" class="player-choose-color p2-choose-color">
                     <input type="button" class="welcome-submit p2-button" value="OK">
