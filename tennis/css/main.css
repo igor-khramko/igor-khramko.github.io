@@ -3,6 +3,11 @@ body{
     padding: 0;
     background-image: url("../image/bg2.jpg");
     background-size: cover;
+    position: fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom: 0;
 }
 .container{
     max-width: 1200px;
