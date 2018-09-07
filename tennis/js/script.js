@@ -77,7 +77,7 @@ var gameAssets = (function createGameAssets(){
     function Player(){
         var self = this;
         self.speedY = 0;                                                                //"скорость" ракетки
-        self.width = 0.02*playingFieldRect.width;                                       //ширина ракетки
+        self.width = 0.025*playingFieldRect.width;                                       //ширина ракетки
         self.height = 0.25*playingFieldRect.height;                                     //высота ракетки
         self.center = {x : self.width/2, y : playingFieldRect.center.y},                //координаты центра ракетки
         self.top =  self.center.y - self.height/2,                                      //верхняя граница ракетки
