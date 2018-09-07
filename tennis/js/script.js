@@ -489,13 +489,16 @@ function restoreHistory(callresult){
     if (callresult.error!=undefined )
         alert(callresult.error); 
     else {
-        // callresult.result = [
-        //     {"player1":{"color":"#0000ff","name":"Leonardo","score":5},"player2":{"score":4,"name":"Donatello","color":"#800080"}},
-        //     {"player1":{"color":"#ffa500","name":"Michelangelo","score":3},"player2":{"score":5,"name":"Raphael","color":"#ff0000"}},
-        //     {"player1":{"color":"#ff0000","name":"Raphael","score":5},"player2":{"score":2,"name":"Leonardo","color":"#0000ff"}},
-        //     {"player1":{"color":"#800080","name":"Donatello","score":4},"player2":{"score":5,"name":"Michelangelo","color":"#ffa500"}},
-        //     {"player1":{"color":"#ffffff","name":"Casey","score":0},"player2":{"score":5,"name":"Splinter","color":"#804000"}}
-        // ];
+        //сохранение дефолтных данных
+        // historyArr = [
+        //     {player1:{color: "#0000ff", name: "Leonardo", score: 5}, player2:{score: 4, name: "Donatello", color: "#800080"}},
+        //     {player1:{color: "#ffa500", name: "Michelangelo", score: 3},player2:{score: 5, name: "Raphael", color: "#ff0000"}},
+        //     {player1:{color: "#ff0000", name: "Raphael", score: 5},player2:{score: 2, name: "Leonardo", color: "#0000ff"}},
+        //     {player1:{color: "#800080", name: "Donatello", score: 4},player2:{score: 5, name: "Michelangelo", color: "#ffa500"}},
+        //     {player1:{color: "#ffffff", name: "Casey", score: 0},player2:{score: 5, name: "Splinter", color: "#804000"}}
+        // ]
+        // var historyJSON = JSON.stringify(historyArr); //переводим массив информации об истории игр в JSON 
+
         historyArr = JSON.parse(callresult.result);
         var gameHistory = {};  //хэш для хранения сохраняемой строки
         gameHistory.player1 = {"color": gameAssets.player1.color, "name" : gameAssets.player1.name, "score" : gameAssets.player1.score};
@@ -514,14 +517,14 @@ function restoreHistory(callresult){
     
 function dataSaved(callresult){
     alert("Счёт игры сохранён");
-    buttonSaveHistory.classList.remove("button-save-enabled");
-    buttonSaveHistory.setAttribute("disabled", "disabled");
-    gameStatus = "inGame";
-    gameAssets.player1.score = 0;
-    gameAssets.player2.score = 0;
-    score1.innerHTML = 0;
-    score2.innerHTML = 0;
-    buttonStart.focus();
+    // buttonSaveHistory.classList.remove("button-save-enabled");
+    // buttonSaveHistory.setAttribute("disabled", "disabled");
+    // gameStatus = "inGame";
+    // gameAssets.player1.score = 0;
+    // gameAssets.player2.score = 0;
+    // score1.innerHTML = 0;
+    // score2.innerHTML = 0;
+    // buttonStart.focus();
 }
 
 function readHistory() {
@@ -543,6 +546,7 @@ function displayHistory(callresult){
     historyView = document.createElement("div");
     historyView.classList.add("history-table");
     historyArr = JSON.parse(callresult.result);
+    console.log(historyArr);
     for(var i = 0; i<historyArr.length; i++){
         // historyArr.length - количество строк таблицы
         var historyDataRow = document.createElement("div");

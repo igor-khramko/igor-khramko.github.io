@@ -211,6 +211,23 @@ body{
             transform: scale(1.1);
 }
 
+.history-table{
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 2px solid black;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    height: 70%;
+    max-height: 500px;
+    width: 80%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
 .history-data-row{
     display: flex;
     margin: 20px 0;
@@ -284,6 +301,9 @@ body{
         border-radius: 20px;
         display: block;
         margin: 0 auto;
+    }
+    .history-table{
+        height: 50%;
     }
 }
 
