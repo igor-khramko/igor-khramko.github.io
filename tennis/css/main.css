@@ -15,7 +15,6 @@ body{
     margin: 0 auto;
     position: relative;
     box-sizing: border-box;
-
 }
 .game-area{
     background-image: url("../image/bg-field.png");
@@ -24,12 +23,10 @@ body{
     height: 300px;
     margin: 0 auto;
 }
-
 .header-info{
     display: flex;
     justify-content: center;
 }
-
 .button-save{
     display: block;
     border-radius: 4px;
@@ -44,16 +41,12 @@ body{
     margin-left: 20px;
     outline: none;
 }
-
 .button-save-enabled:hover{
     background-position: 0 1px;
 }
-
 .button-save-enabled:focus{
     background-position: 0 2px;
 }
-
-
 .scoreView{
     border: 2px solid #190d85;
     box-sizing: border-box;
@@ -62,12 +55,10 @@ body{
     display: flex;
     justify-content: space-around;
 }
-
 .buttons{
     display: flex;
     flex-wrap: wrap;
 }
-
 .button-start, .button-history, .button-hide-history{
     display: block;
     margin: 20px 15px;
@@ -79,7 +70,6 @@ body{
     background: linear-gradient(to bottom, #ffbf00 0%, #fa9f17 100%);
     cursor: pointer;
 }
-
 .button-start:focus{
     outline: none;
     background: #00ff6a4d;
@@ -88,21 +78,14 @@ body{
     transition: -webkit-transform .25 ease;
     transition: "all" .25s ease;
 }
-
 .button-start:hover, .button-history:hover, .button-hide-history:hover{
     cursor: pointer;
     background: #5eff00a1;
 }
-
 .speed{
     height: 29px;
     margin: 20px 15px;
 }
-
-/* form{
-    display:none;
-} */
-
 .welcome-form{
     position: absolute;
     width: 25%;
@@ -127,17 +110,14 @@ body{
     background: -webkit-linear-gradient(left, #3020bc 0%, #375ddb 29%, #4a37db 50%, #4a37db 71%, #3020bc 100%);
     background: linear-gradient(to right, #3020bc 0%, #4a37db 29%, #4a37db 50%, #4a37db 71%, hsl(246, 71%, 43%) 100%);
 }
-
 .hidden{
     display: none;
 }
-
 .welcome{
     display: block;
     text-align: center;
     margin-bottom: 10px;
 }
-
 .player-name-input-field{
     width: 100%;
     color: #fff;
@@ -149,7 +129,6 @@ body{
     padding: 0 20px;
     background: #3020bc;
 }
-
 .player-name-input-field:focus {
     outline: none;
     -webkit-transition: -webkit-transform 1.5s ease;
@@ -157,25 +136,20 @@ body{
     transition: transform 1.5s ease;
     transition: transform 1.5s ease, -webkit-transform 1.5s ease;
     -webkit-transform: scale(1.1);
-            transform: scale(1.1);
+    transform: scale(1.1);
   }
-
-  ::-webkit-input-placeholder {
+::-webkit-input-placeholder {
     color: #fff;
-  }
-  
-  ::-moz-placeholder {
+}
+::-moz-placeholder {
     color: #fff;
-  }
-  
-  :-ms-input-placeholder {
+}
+:-ms-input-placeholder {
     color: #fff;
-  }
-  
-  ::placeholder {
+}
+::placeholder {
     color: #fff;
-  }
-
+}
 .player-choose-color{
     width: 100%;
     margin-bottom: 10px;
@@ -183,7 +157,6 @@ body{
     background-color: #fff;
     height: 40px;
 }
-
 .welcome-submit{
     width: 100%;
     line-height: 25px;
@@ -199,7 +172,6 @@ body{
     -webkit-transform: scale(1);
     transform: scale(1);
 }
-
 .welcome-submit:focus {
     outline: none;
     background: #7bff00ce;
@@ -210,7 +182,6 @@ body{
     -webkit-transform: scale(1.1);
             transform: scale(1.1);
 }
-
 .history-table{
     position: absolute;
     left: 0;
@@ -227,13 +198,11 @@ body{
     overflow: hidden;
     border-radius: 10px;
 }
-
 .history-data-row{
     display: flex;
     margin: 20px 0;
     justify-content: space-around;
 }
-
 .history-data-cell{
     width: 10%;
     height: 20px;
@@ -241,11 +210,14 @@ body{
 .history-data-cell.name{
     flex-basis: 90px;
 }
-
 @media (max-width: 500px){
     .scoreView{
         font-size: 12px;
         width: 200px;
+    }
+    .button-save{
+        height: 18px;
+        width: 18px;
     }
     .buttons{
         justify-content: center;
@@ -263,7 +235,6 @@ body{
     .game-area{
         width: 100%;
     }
-
     .welcome-form{
         min-width: 300px;
         max-width: 350px;
@@ -274,19 +245,16 @@ body{
         line-height: 30px;
         font-size: 15px;
     }
-    
     .welcome{
         margin-bottom: 10px;
         line-height: 20px;
         font-size: 15px;
     }
-    
     .player-name-input-field{
         line-height: 20px;
         font-size: 15px;
         padding: 0 20px;
     }
-    
     .player-choose-color{
         display: block;
         width: 70%;
@@ -294,7 +262,6 @@ body{
         margin-bottom: 10px;
         height: 30px;
     }
-    
     .welcome-submit{
         width: 70%;
         line-height: 20px;
@@ -304,9 +271,9 @@ body{
     }
     .history-table{
         height: 50%;
+        width: 95%;
     }
 }
-
 @media (max-width: 400px){
     .button-start, .button-history, .button-hide-history{
         width: 23%;
