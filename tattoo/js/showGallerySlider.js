@@ -3,7 +3,7 @@ var body = document.querySelector("body");
 var testimonialsSlider, galleryPhotos;
 var gallerySlider = document.querySelector(".gallery__slider");
 var galleryPreview = document.querySelectorAll(".preview__item");
-var galleryPhotosURL = ['url("../img/gallery/1.jpg")', 'url("../img/gallery/2.jpg")', 'url("../img/gallery/3.jpg")'];
+var galleryPhotosURL = ['url("/img/gallery/1.jpg")', 'url("/img/gallery/2.jpg")', 'url("/img/gallery/3.jpg")'];
 var closeBtn = document.querySelector(".gallery__slider-close");
 
 $(document).ready(function(){
