@@ -3,7 +3,6 @@ window.addEventListener("scroll", headerMenuScrolledStyles);
 function headerMenuScrolledStyles(){ 
     var menu = document.querySelector(".navigation");
     var header = document.querySelector(".header");
-    var burger = document.querySelector(".header__navigation-icon_dark")
     var masthead = document.querySelector(".masthead");
     
     if(!header.classList.contains("header__navigation-icon_dark") && menu.classList.contains("navigation_adaptive")){ 

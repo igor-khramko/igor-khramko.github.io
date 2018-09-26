@@ -19,7 +19,6 @@ function headerScrolledStyles(){
         const phoneNumber = document.querySelector(".header__phone-number"); 
         const menu = document.querySelector(".navigation");
         
-
         if(!scrollCondition){ 
             header.classList.toggle("header_dark-scrolled"); 
             companyName.classList.toggle("header__company-name_dark"); 
