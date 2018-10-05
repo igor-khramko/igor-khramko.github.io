@@ -43,19 +43,16 @@ function showFullPhoto(event){
     galleryModal.style.marginTop = screen.height - galleryModal.clientHeight/2;
     galleryPhoto.style.backgroundImage = `url(${this.fullSizeURL})`;
     galleryModal.style.display = "block";
-    galleryPhotos.stopAuto();
 }
 
 function hideFullPhotoByCloseBtn(){
     galleryModal.style.display = "none";
     body.style.overflow = "auto";
-    galleryPhotos.startAuto();
 }
 
 function hideFullPhotoByBlur(event){
     if(event.target == galleryModal){
         galleryModal.style.display = "none";
         body.style.overflow = "auto";
-        galleryPhotos.startAuto();
     }
 }
