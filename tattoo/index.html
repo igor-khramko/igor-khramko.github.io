@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tattoo</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/jquery.bxslider.min.css">
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?159"></script>
@@ -30,11 +30,18 @@
         </div>
       </div>
     </header>
-    <nav class="navigation navigation_dark">
+    <div class="navigation navigation_dark">
       <div class="container">
-        <div class="navigation__items navigation__items_light"><a class="navigation__item link" href="#about-us">On Needle</a><a class="navigation__item link" href="#artist">Мастер</a><a class="navigation__item link" href="#testimonials">Отзывы</a><a class="navigation__item link" href="#gallery">Галерея</a><a class="navigation__item link" href="#contacts">Контакты</a></div>
+        <div class="navigation__mobile">
+          <div class="navigation__burger">
+            <div class="navigation__burger_top"></div>
+            <div class="navigation__burger_mid"></div>
+            <div class="navigation__burger_bottom"></div>
+          </div>
+        </div>
+        <nav class="navigation__items navigation__items_light animated"><a class="navigation__item link" href="#about-us">On Needle</a><a class="navigation__item link" href="#artist">Мастер</a><a class="navigation__item link" href="#testimonials">Отзывы</a><a class="navigation__item link" href="#gallery">Галерея</a><a class="navigation__item link" href="#contacts">Контакты</a></nav>
       </div>
-    </nav>
+    </div>
     <main>
       <section class="banner">
         <div class="banner__content"><img class="banner__item" id="slide1" src="img/1.webp" alt=""><img class="banner__item" id="slide2" src="img/2.jpg" alt=""><img class="banner__item" id="slide3" src="img/3.jpg" alt=""></div>
@@ -43,19 +50,17 @@
       <section class="about-us" id="about-us">
         <div class="container">
           <div class="about-us__content">
+            <div class="about-us__main-title section__main-title">Буду рад видеть Вас у себя на сеансе!</div>
+            <div class="about-us__second-title section__second-title section__second-title_light">Работаю на Логойском</div>
             <div class="about-us__left">
-              <div class="about-us__main-title section__main-title">Буду рад видеть Вас</div>
-              <div class="about-us__second-title section__second-title">у себя на сеансе!</div>
               <div class="about-us__main-text"> 
                 <p>Давно хотели набить свою первую татуировку или же есть желание обзавестись очередным рисунком на своём теле - с удовольствием помогу в осуществлении любых Ваших идей! </p>
                 <p>Так же выполняю перекрытие и коррекцию неудачных результатов предыдущих татуировок. Ведь согласитесь, намного приятнее, когда тату изображено как и задумывалось, без случайных "правок" уже в процессе.</p>
               </div>
             </div>
             <div class="about-us__right">
-              <div class="about-us__main-title section__main-title section__main-title_light">Работаю</div>
-              <div class="about-us__second-title section__second-title section__second-title_light">на Логойском</div>
               <div class="about-us__main-info">
-                <div class="about-us__photo"><img src="img/studio.png" alt=""></div>
+                <div class="about-us__photo"></div>
                 <div class="about-us__description">
                   <div class="about-us__location">Запись на сеанс и предварительная консультация по телефону <a class="phone-number link" href="tel:+375296707666" title="Смелее звоните :)">+375296707666 </a>либо через <a class="phone-number link" href="https://vk.com/onneedle" title="OnNeedle в VK">группу Вконтакте.</a></div>
                   <div class="about-us__address"><span class="address-icon"></span>г.Минск, Логойский тракт 6, кв.41</div>
@@ -181,22 +186,24 @@
                 <div class="gallery__photo"></div>
               </div>
             </div>
-            <div class="gallery__summary">Больше работ можно посмотреть в <b><a class="link" href="https://vk.com/onneedle" title="OnNeedle в VK">группе вк </a></b>или <b><a class="link" href="http://instagram.com/onneedle" title="OnNeedle в Instagram">Instagram</a></b></div>
+            <div class="gallery__summary">Больше работ можно посмотреть в <b><a class="link" href="https://vk.com/onneedle" title="OnNeedle в VK">группе вк </a></b>или <b><a class="link" href="http://instagram.com/onneedle" title="OnNeedle в Instagram">Instagram                </a></b></div>
           </div>
         </div>
       </section>
       <section class="contact-us" id="contacts">
         <div class="container">
           <div class="contact-us__content">
-            <div class="contact-us__main-text">
-              <div class="contact-us__main-title section__main-title">Давно хотите тату?</div>
-              <div class="contact-us__second-title section__second-title">Свяжитесь со мной!</div>
-              <div class="contact-us__description">Запись на сеанс и предварительная консультация по телефону <a class="phone-number link" href="tel:+375296707666" title="Смелее звоните :)">+375296707666 </a>либо через <a class="phone-number link" href="https://vk.com/onneedle">группу Вконтакте.</a></div>
-              <div class="contact-us_vk" id="vk_groups"></div>
-              <div class="contact-us__address"><span class="location-icon"></span>г.Минск, Логойский тракт 6, кв.41.</div>
-              <div class="contact-us__schedule"><span class="clock-icon"></span>Звоните 10.00 - 20.00, без выходных.</div>
+            <div class="contact-us__main-title section__main-title">Давно хотите тату?</div>
+            <div class="contact-us__second-title section__second-title">Свяжитесь со мной!</div>
+            <div class="contact-us__main-info">
+              <div class="contact-us__text">
+                <div class="contact-us__description">Запись на сеанс и предварительная консультация по телефону <a class="phone-number link" href="tel:+375296707666" title="Смелее звоните :)">+375296707666 </a>либо через <a class="phone-number link" href="https://vk.com/onneedle">группу Вконтакте.</a></div>
+                <div class="contact-us_vk" id="vk_groups"></div>
+                <div class="contact-us__address"><span class="location-icon"></span>г.Минск, Логойский тракт 6, кв.41.</div>
+                <div class="contact-us__schedule"><span class="clock-icon"></span>Звоните 10.00 - 20.00, без выходных.</div>
+              </div>
+              <iframe class="contact-us__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.5333757407943!2d27.605622415314922!3d53.94003343777702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf15f2270075%3A0xb4fbf84898fbbc93!2z0JvQvtCz0L7QudGB0LrQuNC5INGC0YDQsNC60YIgNiwg0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1537803726832" frameborder="0" allowfullscreen></iframe>
             </div>
-            <iframe class="contact-us__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.5333757407943!2d27.605622415314922!3d53.94003343777702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf15f2270075%3A0xb4fbf84898fbbc93!2z0JvQvtCz0L7QudGB0LrQuNC5INGC0YDQsNC60YIgNiwg0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1537803726832" frameborder="0" allowfullscreen></iframe>
           </div>
         </div>
       </section>
@@ -207,7 +214,7 @@
           <div class="footer__logo logo">On Needle</div>
           <div class="footer__main-info">
             <div class="footer__copyright">© 2018 On Needle. All Rights Reserved.    </div>
-            <div class="footer__development-info">Designed by <a class="link" href="RobbyDesigns.com" target="_blank" title="RobbyDesigns.com">RobbyDesigns.com</a><br>Development by <a class="link" href="https://www.linkedin.com/in/ikhramko/" target="_blank" title="I.Khramko in LinkedIn">I.Khramko</a></div>
+            <div class="footer__development-info">Development by <a class="link" href="https://www.linkedin.com/in/ikhramko/" target="_blank" title="I.Khramko in LinkedIn">I.Khramko</a></div>
           </div>
           <div class="footer__socials socials"><a class="socials__item circle-btn link" id="vk" href="https://vk.com/onneedle" target="_blank" title="OnNeedle в VK">
               <div class="circle-btn__container">
@@ -225,5 +232,7 @@
     <script type="text/javascript" src="js/changeNavigationTheme.js"></script>
     <script type="text/javascript" src="js/scrollToAnchor.js"></script>
     <script type="text/javascript" src="js/showSliders.js"></script>
+    <script type="text/javascript" src="js/mobileNavigation.js"></script>
+    <script type="text/javascript" src="js/jivosite.js"></script>
   </body>
 </html>
