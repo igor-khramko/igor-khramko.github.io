@@ -1,10 +1,10 @@
 'use strict'
 var body = document.querySelector("body");
 var bannerSlider, testimonialsSlider, galleryPhotos;
-var galleryModal = document.querySelector(".gallery__modal");
-var galleryPreview = document.querySelectorAll(".preview__item");
+// var galleryModal = document.querySelector(".gallery__modal");
+// var galleryPreview = document.querySelectorAll(".preview__item");
 var galleryPhoto = document.querySelector(".gallery__photo");
-var closeBtn = document.querySelector(".gallery__modal-close");
+// var closeBtn = document.querySelector(".gallery__modal-close");
 
 $(document).ready(function(){
     bannerSlider = $('.banner__content').bxSlider(
@@ -23,36 +23,39 @@ $(document).ready(function(){
             pager: false
         }
     );
-    galleryPhotos = $('.preview').bxSlider(
+    galleryPhotos = $('.gallery__slider').bxSlider(
         {
-            randomStart: true,
-            pager: false,
+            nextText: '',
+            prevText: '',
+            controls: false,
+            mode: 'fade',
+            pagerCustom: ".gallery__preview"
         }
     );
 });
 
-for(var i = 0; i < galleryPreview.length; i++){
-    galleryPreview[i].addEventListener("click", {handleEvent: showFullPhoto, photoCount : i, fullSizeURL : galleryPreview[i].getAttribute("full-size-url")});
-}
+// for(var i = 0; i < galleryPreview.length; i++){
+//     galleryPreview[i].addEventListener("click", {handleEvent: showFullPhoto, photoCount : i, fullSizeURL : galleryPreview[i].getAttribute("full-size-url")});
+// }
 
-closeBtn.addEventListener("click", hideFullPhotoByCloseBtn);
-window.addEventListener("click", hideFullPhotoByBlur);
+// closeBtn.addEventListener("click", hideFullPhotoByCloseBtn);
+// window.addEventListener("click", hideFullPhotoByBlur);
 
-function showFullPhoto(event){
-    body.style.overflow = "hidden";
-    galleryModal.style.marginTop = screen.height - galleryModal.clientHeight/2;
-    galleryPhoto.style.backgroundImage = `url(${this.fullSizeURL})`;
-    galleryModal.style.display = "block";
-}
+// function showFullPhoto(event){
+//     body.style.overflow = "hidden";
+//     galleryModal.style.marginTop = screen.height - galleryModal.clientHeight/2;
+//     galleryPhoto.style.backgroundImage = `url(${this.fullSizeURL})`;
+//     galleryModal.style.display = "block";
+// }
 
-function hideFullPhotoByCloseBtn(){
-    galleryModal.style.display = "none";
-    body.style.overflow = "auto";
-}
+// function hideFullPhotoByCloseBtn(){
+//     galleryModal.style.display = "none";
+//     body.style.overflow = "auto";
+// }
 
-function hideFullPhotoByBlur(event){
-    if(event.target == galleryModal){
-        galleryModal.style.display = "none";
-        body.style.overflow = "auto";
-    }
-}
+// function hideFullPhotoByBlur(event){
+//     if(event.target == galleryModal){
+//         galleryModal.style.display = "none";
+//         body.style.overflow = "auto";
+//     }
+// }
