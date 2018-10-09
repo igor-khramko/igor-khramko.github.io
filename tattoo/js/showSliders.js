@@ -1,13 +1,13 @@
 'use strict'
 var body = document.querySelector("body");
-var bannerSlider, testimonialsSlider, galleryPhotos;
+var bannerSlider, testimonialsSlider, previewSlider, galleryPhotos;
 // var galleryModal = document.querySelector(".gallery__modal");
 // var galleryPreview = document.querySelectorAll(".preview__item");
 var galleryPhoto = document.querySelector(".gallery__photo");
 // var closeBtn = document.querySelector(".gallery__modal-close");
 
 $(document).ready(function(){
-    bannerSlider = $('.banner__content').bxSlider(
+    bannerSlider = $('.banner__slider').bxSlider(
         {
             auto: true,
             autoHover: true,
@@ -23,10 +23,18 @@ $(document).ready(function(){
             pager: false
         }
     );
+    previewSlider = $(".preview__slider").bxSlider(
+        {
+            slideMargin: 3,
+            minSlides: 3,
+            maxSlides: 20,
+            pager: false,
+            auto: false
+        }
+    )
     galleryPhotos = $('.gallery__slider').bxSlider(
         {
-            nextText: '',
-            prevText: '',
+            auto: false,
             controls: false,
             mode: 'fade',
             pagerCustom: ".gallery__preview"

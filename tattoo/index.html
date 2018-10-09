@@ -44,7 +44,11 @@
     </div>
     <main>
       <section class="banner">
-        <div class="banner__content"><img class="banner__item" id="slide1" src="img/4.jpg" alt=""><img class="banner__item" id="slide2" src="img/6.jpg" alt=""><img class="banner__item" id="slide3" src="img/3.jpg" alt=""></div>
+        <div class="banner__slider">
+          <div class="banner__slide" id="slide1"></div>
+          <div class="banner__slide" id="slide2"></div>
+          <div class="banner__slide" id="slide3"></div>
+        </div>
       </section>
       <section class="about-us" id="about-us">
         <div class="container">
@@ -62,7 +66,7 @@
                 <div class="about-us__photo"></div>
                 <div class="about-us__description">
                   <div class="about-us__location">Запись на сеанс и предварительная консультация по телефону <a class="phone-number link" href="tel:+375296707666" title="Смелее звоните :)">+375296707666 </a>либо через <a class="phone-number link" href="https://vk.com/onneedle" title="OnNeedle в VK">группу Вконтакте.</a></div>
-                  <div class="about-us__address"><span class="address-icon"></span>г.Минск, Логойский тракт 6, кв.41</div>
+                  <div class="about-us__address"><span class="address-icon"></span>г.Минск, Логойский тракт 6</div>
                   <div class="about-us__schedule"><span class="clock-icon"></span>Записывайтесь 10.00 - 19.00, без выходных.  </div>
                 </div>
               </div>
@@ -75,7 +79,8 @@
           <div class="artist__content">
             <div class="artist__main-title section__main-title">Тату-мастер</div>
             <div class="artist__second-title section__second-title">Дмитрий Юрко</div>
-            <div class="artist__description"><img class="artist__photo" src="img/ava.jpg">
+            <div class="artist__description">
+              <div class="artist__photo"></div>
               <div class="artist__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Interdum proin ligula tempor eras sodales parturient; laoreet curae ridiculus consequat lectus mollis lacinia montes. Aenean commodo nostra elit imperdiet convallis pulvinar: parturient taciti dui posuere consectun. Class dignissim sed conubia ornare curae magna ipsum cum nullam ultrices curabitur eras litora quis Velit tincidunt metus elit purus - lacus fermentum et inline link hendrerit lorem rutrum lorem vitae. Quis interdum inline link hover est porta lobortis quisque ad mi purus libero tristique lorem sapien etiam porta.</div>
             </div>
           </div>
@@ -92,8 +97,13 @@
                 <div class="testimonials__author">Вадим Сумаревич</div>
               </div>
               <div class="testimonials__slide" id="slide2">
+                <div class="testimonials__second-title section__second-title section__second-title_light">Отличный мастер <span class="icon"></span></div>
+                <div class="testimonials__main-text">“Спасибо за отлично проделанную работу <span class="icon"> </span>”</div>
+                <div class="testimonials__author">Ангелина Карницкая </div>
+              </div>
+              <div class="testimonials__slide" id="slide2">
                 <div class="testimonials__second-title section__second-title section__second-title_light">Круто!</div>
-                <div class="testimonials__main-text">“Спасибо за проделанную работу, я очень доволен”</div>
+                <div class="testimonials__main-text">“Спасибо за проделанную работу, я очень доволен <span class="icon"></span>”</div>
                 <div class="testimonials__author">Владислав Кветковский</div>
               </div>
               <div class="testimonials__slide" id="slide3">
@@ -111,21 +121,31 @@
             <div class="gallery__main-title section__main-title">Галерея</div>
             <div class="gallery__second-title section__second-title">Примеры моих работ</div>
             <div class="gallery__description">Volutpat tempor lectus netus etiam est curabitur erat - aliquam non fermentum mi dis habitasse nullam. Tempor lectus sapien cursus magna, mattis elementum magnis adipiscing. Purus felis molestie rutrum auctor lacus euismod ad adipiscing tempus. Vestibulum mattis molestie himenaeos blandit. A aenean luctus nec laoreet hendrerit. Lobortis pharetra duis netus eras mauris mattis placerat nam magnis euismod metus quisque. Varius suspendisse pulvinar inceptos ante sapien ornare conubia sit, nam suscipit quisqu.  </div>
-            <div class="gallery__preview preview"><a class="preview__item" id="preview1" data-slide-index="0" href=""></a><a class="preview__item" id="preview2" data-slide-index="1" href=""></a><a class="preview__item" id="preview3" data-slide-index="2" href=""></a><a class="preview__item" id="preview4" data-slide-index="3" href=""></a><a class="preview__item" id="preview5" data-slide-index="4" href=""></a><a class="preview__item" id="preview6" data-slide-index="5" href=""></a><a class="preview__item" id="preview7" data-slide-index="6" href=""></a><a class="preview__item" id="preview8" data-slide-index="7" href=""></a><a class="preview__item" id="preview9" data-slide-index="8" href=""></a><a class="preview__item" id="preview10" data-slide-index="9" href=""></a><a class="preview__item" id="preview11" data-slide-index="10" href=""></a><a class="preview__item" id="preview12" data-slide-index="11" href=""> </a></div>
-            <ul class="gallery__slider">
-              <li class="gallery__slide" id="slide1"></li>
-              <li class="gallery__slide" id="slide2"></li>
-              <li class="gallery__slide" id="slide3"></li>
-              <li class="gallery__slide" id="slide4"></li>
-              <li class="gallery__slide" id="slide5"></li>
-              <li class="gallery__slide" id="slide6"></li>
-              <li class="gallery__slide" id="slide7"></li>
-              <li class="gallery__slide" id="slide8"></li>
-              <li class="gallery__slide" id="slide9"></li>
-              <li class="gallery__slide" id="slide10"></li>
-              <li class="gallery__slide" id="slide11"></li>
-              <li class="gallery__slide" id="slide12"></li>
-            </ul>
+            <div class="gallery__preview preview">
+              <div class="preview__slider"><a class="preview__slide" id="preview1" data-slide-index="0" href=""></a><a class="preview__slide" id="preview2" data-slide-index="1" href=""></a><a class="preview__slide" id="preview3" data-slide-index="2" href=""></a><a class="preview__slide" id="preview4" data-slide-index="3" href=""></a><a class="preview__slide" id="preview5" data-slide-index="4" href=""></a><a class="preview__slide" id="preview6" data-slide-index="5" href=""></a><a class="preview__slide" id="preview7" data-slide-index="6" href=""></a><a class="preview__slide" id="preview8" data-slide-index="7" href=""></a><a class="preview__slide" id="preview9" data-slide-index="8" href=""></a><a class="preview__slide" id="preview10" data-slide-index="9" href=""></a><a class="preview__slide" id="preview11" data-slide-index="10" href=""></a><a class="preview__slide" id="preview12" data-slide-index="11" href=""> </a><a class="preview__slide" id="preview13" data-slide-index="12" href=""></a><a class="preview__slide" id="preview14" data-slide-index="13" href=""></a><a class="preview__slide" id="preview15" data-slide-index="14" href=""></a><a class="preview__slide" id="preview16" data-slide-index="15" href=""></a><a class="preview__slide" id="preview17" data-slide-index="16" href=""></a><a class="preview__slide" id="preview18" data-slide-index="17" href=""></a><a class="preview__slide" id="preview19" data-slide-index="18" href=""></a><a class="preview__slide" id="preview20" data-slide-index="19" href=""></a></div>
+            </div>
+            <div class="gallery__slider">
+              <div class="gallery__slide" id="slide1"></div>
+              <div class="gallery__slide" id="slide2"></div>
+              <div class="gallery__slide" id="slide3"></div>
+              <div class="gallery__slide" id="slide4"></div>
+              <div class="gallery__slide" id="slide5"></div>
+              <div class="gallery__slide" id="slide6"></div>
+              <div class="gallery__slide" id="slide7"></div>
+              <div class="gallery__slide" id="slide8"></div>
+              <div class="gallery__slide" id="slide9"></div>
+              <div class="gallery__slide" id="slide10"></div>
+              <div class="gallery__slide" id="slide11"></div>
+              <div class="gallery__slide" id="slide12"></div>
+              <div class="gallery__slide" id="slide13"></div>
+              <div class="gallery__slide" id="slide14"></div>
+              <div class="gallery__slide" id="slide15"></div>
+              <div class="gallery__slide" id="slide16"></div>
+              <div class="gallery__slide" id="slide17"></div>
+              <div class="gallery__slide" id="slide18"></div>
+              <div class="gallery__slide" id="slide19"></div>
+              <div class="gallery__slide" id="slide20"></div>
+            </div>
             <div class="gallery__summary">Больше работ можно посмотреть в <b><a class="link" href="https://vk.com/onneedle" title="OnNeedle в VK">группе вк </a></b>или <b><a class="link" href="http://instagram.com/onneedle" title="OnNeedle в Instagram">Instagram                </a></b></div>
           </div>
         </div>
@@ -139,7 +159,7 @@
               <div class="contact-us__text">
                 <div class="contact-us__description">Запись на сеанс и предварительная консультация по телефону <a class="phone-number link" href="tel:+375296707666" title="Смелее звоните :)">+375296707666 </a>либо через <a class="phone-number link" href="https://vk.com/onneedle">группу Вконтакте.</a></div>
                 <div class="contact-us_vk" id="vk_groups"></div>
-                <div class="contact-us__address"><span class="location-icon"></span>г.Минск, Логойский тракт 6, кв.41.</div>
+                <div class="contact-us__address"><span class="location-icon"></span>г.Минск, Логойский тракт 6</div>
                 <div class="contact-us__schedule"><span class="clock-icon"></span>Звоните 10.00 - 20.00, без выходных.</div>
               </div>
               <iframe class="contact-us__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2348.5333757407943!2d27.605622415314922!3d53.94003343777702!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf15f2270075%3A0xb4fbf84898fbbc93!2z0JvQvtCz0L7QudGB0LrQuNC5INGC0YDQsNC60YIgNiwg0JzQuNC90YHQug!5e0!3m2!1sru!2sby!4v1537803726832" frameborder="0" allowfullscreen></iframe>
