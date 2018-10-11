@@ -4,7 +4,8 @@ $(document).ready(function(){
             auto: true,
             autoHover: true,
             randomStart: true,
-            pager: false
+            pager: false,
+            controls: false
         }
       );
 });
