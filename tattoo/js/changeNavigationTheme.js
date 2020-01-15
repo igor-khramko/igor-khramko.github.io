@@ -1,1 +1,0 @@
-var navigation=document.querySelector(".navigation");function changeNavColor(){0<navigation.getBoundingClientRect().top?navigation.style.backgroundColor="#000":0==navigation.getBoundingClientRect().top&&(navigation.style.backgroundColor="#383d45")}window.addEventListener("scroll",changeNavColor);

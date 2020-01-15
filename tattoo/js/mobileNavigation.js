@@ -1,1 +1,0 @@
-$(document).ready(function(){var i="burger";$(".navigation__burger").click(function(){"close"==i?($(".navigation__items").slideUp(),$(".navigation__burger").toggleClass("active"),i="burger"):"burger"==i&&($(".navigation__items").slideDown(),$(".navigation__burger").toggleClass("active"),i="close")})});

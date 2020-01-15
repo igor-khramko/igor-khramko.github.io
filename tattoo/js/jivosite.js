@@ -1,1 +1,0 @@
-!function(){var t=document,e=window;function a(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="//code.jivosite.com/script/widget/VxsTQxDiv7";var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}"complete"==t.readyState?a():e.attachEvent?e.attachEvent("onload",a):e.addEventListener("load",a,!1)}();
