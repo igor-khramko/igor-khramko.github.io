@@ -5,12 +5,11 @@ $(document).ready(function(){
 });
 
 $(document).ready(function () {
-    $('.demo').click( () => {
+    $('.demo').click( function() {
         $('body > .spinner-border').removeClass('d-none');
         setTimeout(function(){
             $('.carousel').removeClass('d-none');
             $('body > .spinner-border').addClass('d-none');
         }, 5000);
     })
-        
 });
